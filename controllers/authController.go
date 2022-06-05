@@ -1,6 +1,7 @@
 package controllers
 
 import (
+	"go_auth/database"
 	"go_auth/models"
 
 	"github.com/gofiber/fiber/v2"
@@ -20,6 +21,8 @@ func Register(c *fiber.Ctx) error {
 		Email:    data["email"],
 		Password: password,
 	}
+
+	database.DB.Create(&user)
 
 	return c.JSON(user)
 }
